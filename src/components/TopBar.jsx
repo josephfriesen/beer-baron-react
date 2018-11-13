@@ -1,18 +1,21 @@
 import React from 'react';
+import ViewToggle from './ViewToggle';
 
 function TopBar() {
   // STYLES
   const topWrapper = {
-    width: "100%",
-    height: "75px",
-    backgroundColor: "red",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
+    width: '100%',
+    height: '75px',
+    backgroundColor: 'red',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   };
 
   const headerItem = {
-    margin: "0 20px"
+    margin: '0 20px',
+    maxHeight: '75px',
+    maxWidth: '200px'
   };
 
   // RENDER
@@ -23,7 +26,7 @@ function TopBar() {
       </div>
 
       <div style={headerItem}>
-        <p>VIEW TOGGLE will go here</p>
+        <ViewToggle />
       </div>
     </div>
   );
