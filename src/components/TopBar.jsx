@@ -1,5 +1,6 @@
 import React from 'react';
 import ViewToggle from './ViewToggle';
+import Logo from './Logo';
 
 function TopBar() {
   // STYLES
@@ -22,7 +23,7 @@ function TopBar() {
   return (
     <div style={topWrapper}>
       <div style={headerItem}>
-        <p>LOGO will go here</p>
+        <Logo />
       </div>
 
       <div style={headerItem}>

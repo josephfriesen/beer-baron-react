@@ -34,7 +34,7 @@ class ViewToggle extends React.Component {
             margin: 5px;
           }
 
-          // The following styling for the toggle switch is taken from https://www.w3schools.com/howto/howto_css_switch.asp
+          // The following styling for the toggle switch is courtesy https://www.w3schools.com/howto/howto_css_switch.asp
 
           .switch {
             position: relative;
