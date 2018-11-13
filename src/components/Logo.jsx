@@ -6,6 +6,6 @@ function Logo() {
       <img src='https://via.placeholder.com/75' />
     </div>
   );
-};
+}
 
 export default Logo;
