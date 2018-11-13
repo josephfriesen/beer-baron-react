@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Welcome from './Welcome';
 import TopBar from './TopBar';
 import Banner from './Banner';
+import TapList from './TapList';
 
 function App() {
   const banner = {
@@ -16,6 +17,9 @@ function App() {
       </div>
       <div style={banner}>
         <Banner />
+      </div>
+      <div>
+        <TapList />
       </div>
       <div>
         <Switch>
