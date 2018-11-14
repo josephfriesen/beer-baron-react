@@ -1,19 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ViewToggle extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {employeeView: false};
-
-    // This binding is necessary to make `this` work in the callback
     this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
-    this.setState(state => ({
-      employeeView: !state.employeeView
-    }));
-    console.log('you hit the toggle button, way to go. employeeView is now: ', this.state.employeeView);
+    this.props.onViewChange();
   }
 
   render() {
@@ -121,5 +116,9 @@ class ViewToggle extends React.Component {
     );
   }
 }
+
+ViewToggle.propTypes = {
+  onViewChange: PropTypes.func
+};
 
 export default ViewToggle;

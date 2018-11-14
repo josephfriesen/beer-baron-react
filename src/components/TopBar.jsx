@@ -1,36 +1,46 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ViewToggle from './ViewToggle';
 import Logo from './Logo';
 
-function TopBar() {
-  // STYLES
-  const topWrapper = {
-    width: '100%',
-    height: '75px',
-    backgroundColor: 'red',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  };
+class TopBar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  const headerItem = {
-    margin: '0 20px',
-    maxHeight: '75px',
-    maxWidth: '200px'
-  };
+  render() {
+    const topWrapper = {
+      width: '100%',
+      height: '75px',
+      backgroundColor: 'red',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    };
 
-  // RENDER
-  return (
-    <div style={topWrapper}>
-      <div style={headerItem}>
-        <Logo />
+    const headerItem = {
+      margin: '0 20px',
+      maxHeight: '75px',
+      maxWidth: '200px'
+    };
+
+    return (
+      <div style={topWrapper}>
+        <div style={headerItem}>
+          <Logo />
+        </div>
+
+        <div style={headerItem}>
+          <ViewToggle
+            onViewChange={this.props.onViewChange} />
+        </div>
       </div>
-
-      <div style={headerItem}>
-        <ViewToggle />
-      </div>
-    </div>
-  );
+    );
+  }
 }
+
+TopBar.propTypes = {
+  onViewChange: PropTypes.func
+};
 
 export default TopBar;
