@@ -4,6 +4,8 @@ import Welcome from './Welcome';
 import TopBar from './TopBar';
 import Banner from './Banner';
 import TapList from './TapList';
+import EmployeeView from './EmployeeView';
+import PatronView from './PatronView';
 
 class App extends React.Component {
 
@@ -26,6 +28,14 @@ class App extends React.Component {
       textAlign: 'center'
     };
 
+    let viewToDisplay = null;
+
+    if (this.state.employeeView) {
+      viewToDisplay = <EmployeeView />;
+    } else {
+      viewToDisplay = <PatronView />;
+    }
+
     return (
       <div>
         <div>
@@ -39,9 +49,7 @@ class App extends React.Component {
           <TapList />
         </div>
         <div>
-          <Switch>
-            <Route exact path='/' component={Welcome}/>
-          </Switch>
+          {viewToDisplay}
         </div>
       </div>
     );
