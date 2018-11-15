@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Welcome from './Welcome';
 import TopBar from './TopBar';
 import Banner from './Banner';
@@ -12,7 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      employeeView: false
+      employeeView: false,
     };
     this.handleViewChange = this.handleViewChange.bind(this);
   }
@@ -20,7 +20,7 @@ class App extends React.Component {
   handleViewChange() {
     const newView = !this.state.employeeView;
     this.setState({employeeView: newView});
-    console.log('App state has changed: ', this.state);
+    console.log(this.state);
   }
 
   render() {
@@ -28,13 +28,14 @@ class App extends React.Component {
       textAlign: 'center'
     };
 
-    let viewToDisplay = null;
-
-    if (this.state.employeeView) {
-      viewToDisplay = <EmployeeView />;
-    } else {
-      viewToDisplay = <PatronView />;
-    }
+    // const redirect = () => {
+    //   console.log('Redirect');
+    //   if (this.state.employeeView) {
+    //     return <Redirect to='/employee' />
+    //   } else {
+    //     return <Redirect to='/' />
+    //   }
+    // }
 
     return (
       <div>
@@ -49,7 +50,11 @@ class App extends React.Component {
           <TapList />
         </div>
         <div>
-          {viewToDisplay}
+          <Switch>
+            <Route exact path='/' component={PatronView} />
+            <Route path='/employee' component={EmployeeView} />
+          </Switch>
+          {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
         </div>
       </div>
     );
