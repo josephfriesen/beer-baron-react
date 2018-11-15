@@ -85,16 +85,9 @@ function TapList() {
     }
   ];
 
-  console.log(kegs);
-
   return (
     <div>
       <h1>TAP LIST</h1>
-      <ul>
-        {kegs.map(keg =>
-          <li key={keg.id}>{keg.name}</li>
-        )}
-      </ul>
     </div>
   );
 }
