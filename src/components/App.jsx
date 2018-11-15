@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { v4 } from 'uuid';
 import TopBar from './TopBar';
 import Banner from './Banner';
-import TapList from './TapList';
 import EmployeeView from './EmployeeView';
 import PatronView from './PatronView';
 
@@ -88,7 +87,6 @@ class App extends React.Component {
         }
       }
     };
-    console.log(this.state.kegs);
     this.handleViewChange = this.handleViewChange.bind(this);
   }
 
@@ -106,13 +104,11 @@ class App extends React.Component {
       <div>
         <div>
           <TopBar
-            onViewChange={this.handleViewChange} />
+            onViewChange={this.handleViewChange}
+            employeeView={this.state.employeeView}/>
         </div>
         <div style={banner}>
           <Banner />
-        </div>
-        <div>
-          <TapList />
         </div>
         <div>
           <Switch>
