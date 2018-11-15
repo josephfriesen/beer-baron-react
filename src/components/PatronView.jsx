@@ -13,6 +13,7 @@ class PatronView extends React.Component {
       </div>
     );
   }
+
 }
 
 export default PatronView;
