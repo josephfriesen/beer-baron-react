@@ -25,7 +25,7 @@ Employee view / Edit modal open
 
 Before starting work on the app, I sketched a graph representing the component structure that would be needed to most closely replicate the functionality of the previous build of the application that would utilize React components rather than Angular components.
 
-![Component graph](src\assets\componentgraph.jpg)
+![Component graph](./src/assets/componentgraph.jpg)
 
 #### Notes
 

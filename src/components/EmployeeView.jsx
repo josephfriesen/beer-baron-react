@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TapList from './TapList';
+import { Button } from 'react-toolbox/lib/button';
 
 function EmployeeView(props) {
   return (
@@ -11,7 +12,7 @@ function EmployeeView(props) {
           onActiveKegChange={props.onActiveKegChange} />
       </div>
       <div>
-        <button type='button'>Add a keg</button>
+        <Button label='Add a keg' icon='add' />
       </div>
     </div>
   );

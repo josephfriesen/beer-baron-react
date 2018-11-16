@@ -33,14 +33,6 @@ export default function DetailLeftColumn(props) {
     </div>
   );
 }
-//
-// 'name': 'Pabst Blue Ribbon',
-// 'price': '3.00',
-// 'brewery': 'Pabst Brewing Company',
-// 'abv': '0.0474',
-// 'style': 'American Adjunct Lager',
-// 'pintsLeft': 41,
-// 'img': 'https://images.heb.com/is/image/HEBGrocery/000942934-1?id=ZkuRh0&fmt=jpg&fit=constrain,1&wid=296&hei=296'
 
 DetailLeftColumn.propTypes = {
   keg: PropTypes.object
