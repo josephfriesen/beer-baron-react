@@ -24,9 +24,9 @@ export default function DetailLeftColumn(props) {
         <p>{props.keg.style}</p>
       </div>
     </div>
-  )
+  );
 }
 
 DetailLeftColumn.propTypes = {
   keg: PropTypes.object
-}
+};

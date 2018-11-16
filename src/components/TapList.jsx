@@ -19,6 +19,7 @@ export default function TapList(props) {
         {`
           li {
             list-style-type: none;
+            margin: 5px 0;
           }
         `}
       </style>

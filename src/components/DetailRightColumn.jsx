@@ -22,9 +22,9 @@ export default function DetailRightColumn(props) {
       </style>
       <img src={props.keg.img} />
     </div>
-  )
+  );
 }
 
 DetailRightColumn.propTypes = {
   keg: PropTypes.object
-}
+};
