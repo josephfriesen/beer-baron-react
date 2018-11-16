@@ -92,10 +92,10 @@ class App extends React.Component {
     };
     this.handleViewChange = this.handleViewChange.bind(this);
     this.setActiveKeg = this.setActiveKeg.bind(this);
+    this.handleAddingNewKeg = this.handleAddingNewKeg.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('App.componentDidUpdate()');
     // TODO: Move the Redirect component into state, and have it render if and only if this.state.employeeView has been updated, otherwise have this.state.redirect = ''.
     // BAD! Infinite loop!
     // if (prevState.employeeView != this.state.employeeView) {
@@ -116,7 +116,14 @@ class App extends React.Component {
 
   setActiveKeg(kegId) {
     this.setState({activeKeg: kegId});
-    console.log(this.state.activeKeg);
+  }
+  
+  handleAddingNewKeg(newKeg) {
+    const kegId = v4();
+    const newKegs = Object.assign({}, this.state.kegs, {
+      [kegId]: newKeg
+    });
+    this.setState({kegs: newKegs});
   }
 
   render() {
@@ -164,7 +171,8 @@ class App extends React.Component {
                 <EmployeeView
                   kegs={this.state.kegs}
                   onActiveKegChange={this.setActiveKeg}
-                  routerPath={props.location.pathname} />} />
+                  routerPath={props.location.pathname}
+                  onNewKegSubmission={this.handleAddingNewKeg} />} />
             </Switch>
             {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
           </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TapList from './TapList';
+import AddKegForm from './AddKegForm';
 import { Button } from 'react-toolbox/lib/button';
 import { Dialog } from 'react-toolbox/lib/dialog';
 
@@ -15,11 +16,11 @@ export default class EmployeeView extends React.Component {
     this.addDialogActions = [
       { label: 'Cancel', onClick: this.addDialogToggle }
     ];
-  };
+  }
   
   addDialogToggle() {
     this.setState({addDialogOn: !this.state.addDialogOn});
-  };
+  }
   
   render() {
     return (
@@ -37,7 +38,9 @@ export default class EmployeeView extends React.Component {
             onEscKeyDown={this.addDialogToggle}
             onOverlayClick={this.addDialogToggle}
             title='Add a new keg'>
-            <p>What up</p>
+            <AddKegForm 
+              closeDialog={this.addDialogToggle}
+              onNewKegSubmission={this.props.onNewKegSubmission}/>
           </Dialog>
         </div>
       </div>
@@ -48,5 +51,6 @@ export default class EmployeeView extends React.Component {
 EmployeeView.propTypes = {
   kegs: PropTypes.object,
   routerPath: PropTypes.string,
-  onActiveKegChange: PropTypes.func
+  onActiveKegChange: PropTypes.func,
+  onNewKegSubmission: PropTypes.func
 };
