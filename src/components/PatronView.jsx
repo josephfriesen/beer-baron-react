@@ -1,19 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import TapList from './TapList';
 
-class PatronView extends React.Component {
+function PatronView(props) {
+  return (
+    <div>
+      <TapList
+        kegs={props.kegs}
+        onActiveKegChange={props.onActiveKegChange} />
+    </div>
+  );
+}
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return(
-      <div>
-        <p>Patron View Goes Here</p>
-      </div>
-    );
-  }
-
+PatronView.propTypes = {
+  kegs: PropTypes.object,
+  onActiveKegChange: PropTypes.func
 }
 
 export default PatronView;

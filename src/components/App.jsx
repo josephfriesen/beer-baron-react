@@ -12,6 +12,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       employeeView: false,
+      activeKeg: null,
+      // redirect: '',
       kegs: {
         '4487692e-4934-4dc2-9627-fff21217060a': {
           'name': 'Pabst Blue Ribbon',
@@ -88,11 +90,32 @@ class App extends React.Component {
       }
     };
     this.handleViewChange = this.handleViewChange.bind(this);
+    this.setActiveKeg = this.setActiveKeg.bind(this);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App.componentDidUpdate()');
+    // TODO: Move the Redirect component into state, and have it render if and only if this.state.employeeView has been updated, otherwise have this.state.redirect = ''.
+    // BAD! Infinite loop!
+    // if (prevState.employeeView != this.state.employeeView) {
+    //   if (this.state.employeeView) {
+    //     this.setState({redirect: `<Redirect to='/employee' />`});
+    //   } else {
+    //     this.setState({redirect: `<Redirect to='/' />`});
+    //   }
+    // } else {
+    //   this.setState({redirect: ''});
+    // }
   }
 
   handleViewChange() {
     const newView = !this.state.employeeView;
     this.setState({employeeView: newView});
+  }
+
+  setActiveKeg(kegId) {
+    this.setState({activeKeg: kegId});
+    console.log(this.state.activeKeg);
   }
 
   render() {
@@ -105,15 +128,22 @@ class App extends React.Component {
         <div>
           <TopBar
             onViewChange={this.handleViewChange}
-            employeeView={this.state.employeeView}/>
+            employeeView={this.state.employeeView} />
         </div>
         <div style={banner}>
           <Banner />
         </div>
         <div>
           <Switch>
-            <Route exact path='/' component={PatronView} />
-            <Route path='/employee' component={EmployeeView} />
+            <Route exact path='/' render={() =>
+              <PatronView
+                kegs={this.state.kegs}
+                onActiveKegChange={this.setActiveKeg} />} />
+            <Route path='/employee' render={(props) =>
+              <EmployeeView
+                kegs={this.state.kegs}
+                onActiveKegChange={this.setActiveKeg}
+                routerPath={props.location.pathname} />} />
           </Switch>
           {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
         </div>

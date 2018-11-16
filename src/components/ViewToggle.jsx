@@ -93,7 +93,7 @@ function ViewToggle(props) {
       <div>
         <form>
           <label className='switch'>
-            <input type='checkbox' onChange={props.onViewChange} />
+            { props.employeeView ? <input type='checkbox' checked onChange={props.onViewChange} /> : <input type='checkbox' onChange={props.onViewChange} />}
             <span className='slider round'></span>
           </label>
         </form>
