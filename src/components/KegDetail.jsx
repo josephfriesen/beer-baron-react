@@ -4,32 +4,55 @@ import DetailLeftColumn from './DetailLeftColumn';
 import DetailRightColumn from './DetailRightColumn';
 
 export default function KegDetail(props) {
+  let editPanel;
+  if (props.employeeView) {
+    editPanel = <div><p>Edit buttons go here</p></div>;
+  } else {
+    editPanel = <div className='the-hard-sell'><p>Try one today!</p></div>
+  }
+  
   return (
     <div className='container'>
       <style jsx>
-        {`
-          .container {
-            background-color: #ffd699;
-            box-shadow: 0 0 1px 2px grey;
-            height: 100%;
-            padding: 20px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-bewteen;
-          }
-          .detail-column {
-            margin: 10px;
-            width: calc(50% - 20px);
-          }
+      {`
+        .container {
+          background-color: #ffd699;
+          box-shadow: 0 0 1px 2px grey;
+          height: 100%;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .columns {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-bewteen;
+          width: 100%;
+        }
+        .detail-column {
+          margin: 10px;
+          width: calc(50% - 20px);
+        }
+        .the-hard-sell {
+          text-align: center;
+          font-style: italic;
+        }
         `}
       </style>
-      <div className='detail-column'>
-        <DetailLeftColumn
-          keg={props.keg} />
+      <div className='columns'>
+        <div className='detail-column'>
+          <DetailLeftColumn
+            keg={props.keg} />
+        </div>
+        <div className='detail-column'>
+          <DetailRightColumn
+            keg={props.keg} />
+        </div>
       </div>
-      <div className='detail-column'>
-        <DetailRightColumn
-          keg={props.keg} />
+      <div className='footer'>
+        {editPanel}
       </div>
     </div>
   );
@@ -37,5 +60,6 @@ export default function KegDetail(props) {
 
 KegDetail.propTypes = {
   keg: PropTypes.object,
-  kegId: PropTypes.string
+  kegId: PropTypes.string,
+  employeeView: PropTypes.bool
 };

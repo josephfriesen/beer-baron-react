@@ -41,5 +41,5 @@ export default function TapList(props) {
 
 TapList.propTypes = {
   kegs: PropTypes.object,
-  onActiveKegChange: PropTypes.func
+  onActiveKegChange: PropTypes.func,
 };

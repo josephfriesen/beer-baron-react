@@ -131,7 +131,8 @@ class App extends React.Component {
     if (this.state.activeKeg) {
       renderKegDetailAfterSelection = <KegDetail
         keg={this.state.kegs[this.state.activeKeg]}
-        kegId={this.state.activeKeg} />;
+        kegId={this.state.activeKeg}
+        employeeView={this.state.employeeView} />;
     } else {
       renderKegDetailAfterSelection = <p></p>;
     }
@@ -171,7 +172,6 @@ class App extends React.Component {
                 <EmployeeView
                   kegs={this.state.kegs}
                   onActiveKegChange={this.setActiveKeg}
-                  routerPath={props.location.pathname}
                   onNewKegSubmission={this.handleAddingNewKeg} />} />
             </Switch>
             {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}

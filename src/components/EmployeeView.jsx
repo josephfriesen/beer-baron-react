@@ -50,7 +50,6 @@ export default class EmployeeView extends React.Component {
 
 EmployeeView.propTypes = {
   kegs: PropTypes.object,
-  routerPath: PropTypes.string,
   onActiveKegChange: PropTypes.func,
   onNewKegSubmission: PropTypes.func
 };
