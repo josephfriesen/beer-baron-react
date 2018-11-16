@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DetailLeftColumn from './DetailLeftColumn';
 import DetailRightColumn from './DetailRightColumn';
+import EditButtons from './EditButtons';
 
 export default function KegDetail(props) {
   let editPanel;
   if (props.employeeView) {
-    editPanel = <div><p>Edit buttons go here</p></div>;
+    editPanel = <div><EditButtons 
+      keg={props.keg} 
+      kegId={props.kegId}
+      sellAPint={props.sellAPint}
+      restock={props.restock} /></div>;
   } else {
     editPanel = <div className='the-hard-sell'><p>Try one today!</p></div>
   }
@@ -61,5 +66,7 @@ export default function KegDetail(props) {
 KegDetail.propTypes = {
   keg: PropTypes.object,
   kegId: PropTypes.string,
-  employeeView: PropTypes.bool
+  employeeView: PropTypes.bool,
+  sellAPint: PropTypes.func,
+  restock: PropTypes.func
 };

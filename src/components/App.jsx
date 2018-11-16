@@ -93,6 +93,8 @@ class App extends React.Component {
     this.handleViewChange = this.handleViewChange.bind(this);
     this.setActiveKeg = this.setActiveKeg.bind(this);
     this.handleAddingNewKeg = this.handleAddingNewKeg.bind(this);
+    this.handleSellingAPint = this.handleSellingAPint.bind(this);
+    this.handleKegRestock = this.handleKegRestock.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -125,6 +127,24 @@ class App extends React.Component {
     });
     this.setState({kegs: newKegs});
   }
+  
+  handleSellingAPint() {
+    const kegId = this.state.activeKeg; // copy active keg id
+    let stateDupe = Object.assign({}, this.state); // copy state
+    stateDupe.kegs = Object.assign({}, this.state.kegs); // copy kegs
+    stateDupe.kegs[kegId] = Object.assign({}, this.state.kegs[kegId]); // copy keg being edited
+    stateDupe.kegs[kegId].pintsLeft -= 1; // Edit property
+    this.setState(stateDupe); // set state
+  }
+  
+  handleKegRestock() {
+    const kegId = this.state.activeKeg; // copy active keg id
+    let stateDupe = Object.assign({}, this.state); // copy state
+    stateDupe.kegs = Object.assign({}, this.state.kegs); // copy kegs
+    stateDupe.kegs[kegId] = Object.assign({}, this.state.kegs[kegId]); // copy keg being edited
+    stateDupe.kegs[kegId].pintsLeft = 124; // Edit property
+    this.setState(stateDupe); // set state
+  }
 
   render() {
     let renderKegDetailAfterSelection;
@@ -132,7 +152,9 @@ class App extends React.Component {
       renderKegDetailAfterSelection = <KegDetail
         keg={this.state.kegs[this.state.activeKeg]}
         kegId={this.state.activeKeg}
-        employeeView={this.state.employeeView} />;
+        employeeView={this.state.employeeView}
+        sellAPint={this.handleSellingAPint}
+        restock={this.handleKegRestock} />;
     } else {
       renderKegDetailAfterSelection = <p></p>;
     }
