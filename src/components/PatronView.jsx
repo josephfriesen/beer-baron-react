@@ -15,6 +15,6 @@ function PatronView(props) {
 PatronView.propTypes = {
   kegs: PropTypes.object,
   onActiveKegChange: PropTypes.func
-}
+};
 
 export default PatronView;

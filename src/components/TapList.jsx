@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 export default function TapList(props) {
   const gettingLow = {
     color: 'red'
-  }
+  };
 
   const wereAllOutOfThisStuff = {
     color: 'red',
     textDecoration: 'line-through'
-  }
+  };
 
-  const none = {}
+  const none = {};
 
   return (
     <div>
@@ -23,7 +23,7 @@ export default function TapList(props) {
           if (keg.pintsLeft <= 10) {
             if (keg.pintsLeft == 0) {listItemStyle = wereAllOutOfThisStuff;} else {listItemStyle = gettingLow;}
           }
-          return <li key={kegId} style={listItemStyle} onClick={() => {props.onActiveKegChange(kegId)}}>{keg.name}</li>;
+          return <li key={kegId} style={listItemStyle} onClick={() => {props.onActiveKegChange(kegId);}}>{keg.name}</li>;
         })}
       </ul>
     </div>
@@ -33,4 +33,4 @@ export default function TapList(props) {
 TapList.propTypes = {
   kegs: PropTypes.object,
   onActiveKegChange: PropTypes.func
-}
+};

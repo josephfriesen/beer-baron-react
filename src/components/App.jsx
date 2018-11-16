@@ -120,22 +120,30 @@ class App extends React.Component {
   }
 
   render() {
-    const banner = {
-      textAlign: 'center'
-    };
-
+    let renderKegDetailAfterSelection;
+    if (this.state.activeKeg) {
+      renderKegDetailAfterSelection = <KegDetail
+        keg={this.state.kegs[this.state.activeKeg]}
+        kegId={this.state.activeKeg} />;
+    } else {
+      renderKegDetailAfterSelection = <p></p>;
+    }
     return (
       <div>
         <style jsx>{`
+            .banner {
+              text-align: center;
+            }
             .body-flexbox {
               display: flex;
-              width: 100%;
+              width: calc(100% - 40px);
               flex-direction: row;
               justify-content: space-between;
+              padding: 0 20px;
             }
             .flexbox-panel {
               width: 50%;
-              border: 1px solid black;
+              min-height: 300px;
             }
           `}</style>
         <div>
@@ -143,7 +151,7 @@ class App extends React.Component {
             onViewChange={this.handleViewChange}
             employeeView={this.state.employeeView} />
         </div>
-        <div style={banner}>
+        <div className='banner'>
           <Banner />
         </div>
         <div className='body-flexbox'>
@@ -162,9 +170,7 @@ class App extends React.Component {
             {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
           </div>
           <div className='flexbox-panel'>
-            <KegDetail
-              kegs={this.state.kegs}
-              kegId={this.state.activeKeg} />
+            {renderKegDetailAfterSelection}
           </div>
         </div>
       </div>
