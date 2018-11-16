@@ -21,11 +21,26 @@ export default function DetailLeftColumn(props) {
         <h4>{props.keg.name}</h4>
       </div>
       <div>
-        <p>{props.keg.style}</p>
+        <p>{props.keg.style}<br/>by {props.keg.brewery}</p>
+      </div>
+      <div>
+        <ul>
+          <li>ABV: {(props.keg.abv * 100).toFixed(2)}%</li>
+          <li>Price: ${props.keg.price}</li>
+          <li>Pints Left: {(props.keg.pintsLeft == 0) ? 'All out!' : props.keg.pintsLeft}</li>
+        </ul>
       </div>
     </div>
   );
 }
+//
+// 'name': 'Pabst Blue Ribbon',
+// 'price': '3.00',
+// 'brewery': 'Pabst Brewing Company',
+// 'abv': '0.0474',
+// 'style': 'American Adjunct Lager',
+// 'pintsLeft': 41,
+// 'img': 'https://images.heb.com/is/image/HEBGrocery/000942934-1?id=ZkuRh0&fmt=jpg&fit=constrain,1&wid=296&hei=296'
 
 DetailLeftColumn.propTypes = {
   keg: PropTypes.object

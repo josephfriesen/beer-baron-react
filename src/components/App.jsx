@@ -143,7 +143,6 @@ class App extends React.Component {
             }
             .flexbox-panel {
               width: 50%;
-              min-height: 300px;
             }
           `}</style>
         <div>
