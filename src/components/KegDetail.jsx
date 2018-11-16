@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DetailHeader from './DetailHeader';
+import DetailLeftColumn from './DetailLeftColumn';
+import DetailRightColumn from './DetailRightColumn';
 
 export default function KegDetail(props) {
   return (
@@ -13,21 +14,22 @@ export default function KegDetail(props) {
             height: 100%;
             padding: 20px;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
+            flex-direction: row;
+            justify-content: space-bewteen;
+          }
+          .detail-column {
+            margin: 10px;
+            width: calc(50% - 20px);
           }
         `}
       </style>
-      <DetailHeader
-        keg={props.keg} />
-      <div className='detail-row this-will-also-be-a-single-component'>
-        <div>
-          <p>blah</p>
-        </div>
-        <div>
-          <p>blah</p>
-        </div>
+      <div className='detail-column'>
+        <DetailLeftColumn
+          keg={props.keg} />
+      </div>
+      <div className='detail-column'>
+        <DetailRightColumn
+          keg={props.keg} />
       </div>
     </div>
   );

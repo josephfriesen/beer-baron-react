@@ -15,6 +15,13 @@ export default function TapList(props) {
 
   return (
     <div>
+      <style jsx>
+        {`
+          li {
+            list-style-type: none;
+          }
+        `}
+      </style>
       <h1>Tap List</h1>
       <ul>
         {Object.keys(props.kegs).map(kegId => {

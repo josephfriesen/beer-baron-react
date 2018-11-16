@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function DetailHeader(props) {
+export default function DetailLeftColumn(props) {
   return(
     <div className='container'>
       <style jsx>{`
           .container {
             width: 100%;
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
           }
-          .container img {
-            width: 200px;
-            height: 200px;
-            border: 1px solid grey;
+          h4 {
+            margin: 0;
           }
         `}
       </style>
@@ -22,12 +21,12 @@ export default function DetailHeader(props) {
         <h4>{props.keg.name}</h4>
       </div>
       <div>
-        <img src={props.keg.img} />
+        <p>{props.keg.style}</p>
       </div>
     </div>
   )
 }
 
-DetailHeader.propTypes = {
+DetailLeftColumn.propTypes = {
   keg: PropTypes.object
 }
