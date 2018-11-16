@@ -35,7 +35,6 @@ Before starting work on the app, I sketched a graph representing the component s
 
 * React-DOM
 * React-Router
-* [Formik](https://github.com/jaredpalmer/formik)
 * [React Toolbox](https://github.com/react-toolbox/react-toolbox)
 * Webpack
 * HTML/CSS
