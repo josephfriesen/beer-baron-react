@@ -5,6 +5,7 @@ import TopBar from './TopBar';
 import Banner from './Banner';
 import EmployeeView from './EmployeeView';
 import PatronView from './PatronView';
+import KegDetail from './KegDetail';
 
 class App extends React.Component {
 
@@ -125,6 +126,18 @@ class App extends React.Component {
 
     return (
       <div>
+        <style jsx>{`
+            .body-flexbox {
+              display: flex;
+              width: 100%;
+              flex-direction: row;
+              justify-content: space-between;
+            }
+            .flexbox-panel {
+              width: 50%;
+              border: 1px solid black;
+            }
+          `}</style>
         <div>
           <TopBar
             onViewChange={this.handleViewChange}
@@ -133,19 +146,26 @@ class App extends React.Component {
         <div style={banner}>
           <Banner />
         </div>
-        <div>
-          <Switch>
-            <Route exact path='/' render={() =>
-              <PatronView
-                kegs={this.state.kegs}
-                onActiveKegChange={this.setActiveKeg} />} />
-            <Route path='/employee' render={(props) =>
-              <EmployeeView
-                kegs={this.state.kegs}
-                onActiveKegChange={this.setActiveKeg}
-                routerPath={props.location.pathname} />} />
-          </Switch>
-          {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
+        <div className='body-flexbox'>
+          <div className='flexbox-panel'>
+            <Switch>
+              <Route exact path='/' render={() =>
+                <PatronView
+                  kegs={this.state.kegs}
+                  onActiveKegChange={this.setActiveKeg} />} />
+              <Route path='/employee' render={(props) =>
+                <EmployeeView
+                  kegs={this.state.kegs}
+                  onActiveKegChange={this.setActiveKeg}
+                  routerPath={props.location.pathname} />} />
+            </Switch>
+            {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
+          </div>
+          <div className='flexbox-panel'>
+            <KegDetail
+              kegs={this.state.kegs}
+              kegId={this.state.activeKeg} />
+          </div>
         </div>
       </div>
     );
