@@ -13,9 +13,6 @@ export default class EmployeeView extends React.Component {
       addDialogOn: false
     };
     this.addDialogToggle = this.addDialogToggle.bind(this);
-    this.addDialogActions = [
-      { label: 'Cancel', onClick: this.addDialogToggle }
-    ];
   }
   
   addDialogToggle() {
@@ -33,7 +30,7 @@ export default class EmployeeView extends React.Component {
         <div>
           <Button label='Add a keg' raised onClick={this.addDialogToggle} />
           <Dialog
-            actions={this.addDialogActions}
+            actions={[]}
             active={this.state.addDialogOn}
             onEscKeyDown={this.addDialogToggle}
             onOverlayClick={this.addDialogToggle}

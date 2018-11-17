@@ -96,6 +96,7 @@ class App extends React.Component {
     this.handleSellingAPint = this.handleSellingAPint.bind(this);
     this.handleKegRestock = this.handleKegRestock.bind(this);
     this.handleDeletingAKeg = this.handleDeletingAKeg.bind(this);
+    this.handleEditingAKeg = this.handleEditingAKeg.bind(this);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -156,7 +157,16 @@ class App extends React.Component {
     delete stateDupe.kegs[kegId];
     this.setState(stateDupe);
   }
-
+  
+  handleEditingAKeg(editedKeg) {
+    const kegId = this.state.activeKeg;
+    let stateDupe = Object.assign({}, this.state);
+    stateDupe.kegs = Object.assign({}, this.state.kegs);
+    stateDupe.kegs[kegId] = editedKeg;
+    console.log(stateDupe);
+    this.setState(stateDupe);
+  }
+  
   render() {
     let renderKegDetailAfterSelection;
     if (this.state.activeKeg) {
@@ -166,7 +176,8 @@ class App extends React.Component {
         employeeView={this.state.employeeView}
         sellAPint={this.handleSellingAPint}
         restock={this.handleKegRestock}
-        removeKeg={this.handleDeletingAKeg} />;
+        removeKeg={this.handleDeletingAKeg}
+        onKegEditSubmission={this.handleEditingAKeg} />;
     } else {
       renderKegDetailAfterSelection = <p></p>;
     }

@@ -12,7 +12,8 @@ export default function KegDetail(props) {
       kegId={props.kegId}
       sellAPint={props.sellAPint}
       restock={props.restock}
-      removeKeg={props.removeKeg} /></div>;
+      removeKeg={props.removeKeg}
+      onKegEditSubmission={props.onKegEditSubmission} /></div>;
   } else {
     editPanel = <div className='the-hard-sell'><p>Try one today!</p></div>
   }
@@ -70,5 +71,6 @@ KegDetail.propTypes = {
   employeeView: PropTypes.bool,
   sellAPint: PropTypes.func,
   restock: PropTypes.func,
-  removeKeg: PropTypes.func
+  removeKeg: PropTypes.func,
+  onKegEditSubmission: PropTypes.func
 };
