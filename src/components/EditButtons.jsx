@@ -36,6 +36,14 @@ export default class EditButtons extends React.Component {
   render() {
     return (
       <div className='container'>
+      <style jsx>{`
+        .container {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+        }
+      `}
+      </style>
         <Button label='Sell a pint' raised onClick={this.props.sellAPint} />
         <Button label='Restock keg' raised onClick={this.props.restock} />
         <Button label='Edit this keg' raised onClick={this.editDialogToggle} />

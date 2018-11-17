@@ -28,13 +28,13 @@ export default function EditKegForm(props) {
   
   return (
     <div>
-      <Input type='text' label={props.keg.name} id='name' onChange={(value) => {inputSubmission('name', value);}}/>
-      <Input type='text' label={props.keg.brewery} id='brewery' onChange={(value) => {inputSubmission('brewery', value);}} />
-      <Input type='text' label={props.keg.style} id='style' onChange={(value) => {inputSubmission('style', value);}}/>
-      <Input type='text' label={props.keg.abv} id='abv' onChange={(value) => {inputSubmission('abv', value);}}/>
-      <Input type='text' label={props.keg.price} id='price' onChange={(value) => {inputSubmission('price', value);}}/>
-      <Input type='text' label={props.keg.pintsLeft} id='pintsLeft' onChange={(value) => {inputSubmission('pintsLeft', value);}}/>
-      <Input type='text' label={props.keg.img} id='img' onChange={(value) => {inputSubmission('img', value);}}/>
+      <Input type='text' hint={kegObject.name} id='name' onChange={(value) => {inputSubmission('name', value);}}/>
+      <Input type='text' hint={kegObject.brewery} id='brewery' onChange={(value) => {inputSubmission('brewery', value);}} />
+      <Input type='text' hint={kegObject.style} id='style' onChange={(value) => {inputSubmission('style', value);}}/>
+      <Input type='text' hint={kegObject.abv} id='abv' onChange={(value) => {inputSubmission('abv', value);}}/>
+      <Input type='text' hint={kegObject.price} id='price' onChange={(value) => {inputSubmission('price', value);}}/>
+      <Input type='text' hint={kegObject.pintsLeft} id='pintsLeft' onChange={(value) => {inputSubmission('pintsLeft', value);}}/>
+      <Input type='text' hint={kegObject.img} id='img' onChange={(value) => {inputSubmission('img', value);}}/>
       <Button label='Cancel' onClick={props.editDialogToggle} />
       <Button label='Save' onClick={() => {handleKegSubmission(kegObject);}} />
     </div>

@@ -7,15 +7,15 @@ import EditButtons from './EditButtons';
 export default function KegDetail(props) {
   let editPanel;
   if (props.employeeView) {
-    editPanel = <div><EditButtons 
+    editPanel = <EditButtons 
       keg={props.keg} 
       kegId={props.kegId}
       sellAPint={props.sellAPint}
       restock={props.restock}
       removeKeg={props.removeKeg}
-      onKegEditSubmission={props.onKegEditSubmission} /></div>;
+      onKegEditSubmission={props.onKegEditSubmission} />;
   } else {
-    editPanel = <div className='the-hard-sell'><p>Try one today!</p></div>
+    editPanel = <p>Try one today!</p>
   }
   
   return (
@@ -42,9 +42,14 @@ export default function KegDetail(props) {
           margin: 10px;
           width: calc(50% - 20px);
         }
-        .the-hard-sell {
+        .footer {
           text-align: center;
           font-style: italic;
+          width: 100%;
+          height: 50px;
+        }
+        .footer p {
+          margin: 0;
         }
         `}
       </style>
