@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-toolbox/lib/button';
 import { Dialog } from 'react-toolbox/lib/dialog';
-import EditKegForm from './EditKegForm';
+import KegForm from './KegForm';
 
 export default class EditButtons extends React.Component {
   constructor(props) {
@@ -53,10 +53,10 @@ export default class EditButtons extends React.Component {
           onEscKeyDown={this.editDialogToggle}
           onOverlayClick={this.editDialogToggle}
           title='Edit Keg Information'>
-          <EditKegForm
-            editDialogToggle={this.editDialogToggle}
-            onKegEditSubmission={this.props.onKegEditSubmission}
-            keg={this.props.keg} />
+          <KegForm
+            keg={this.props.keg}
+            toggleParentDialog={this.editDialogToggle}
+            onFormSubmission={this.props.onKegEditSubmission} />
         </Dialog>
         <Button label='Delete this keg' raised onClick={this.deleteDialogToggle} />
         <Dialog

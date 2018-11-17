@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TapList from './TapList';
-import AddKegForm from './AddKegForm';
+import KegForm from './KegForm';
 import { Button } from 'react-toolbox/lib/button';
 import { Dialog } from 'react-toolbox/lib/dialog';
 
@@ -14,11 +14,11 @@ export default class EmployeeView extends React.Component {
     };
     this.addDialogToggle = this.addDialogToggle.bind(this);
   }
-  
+
   addDialogToggle() {
     this.setState({addDialogOn: !this.state.addDialogOn});
   }
-  
+
   render() {
     return (
       <div>
@@ -35,9 +35,10 @@ export default class EmployeeView extends React.Component {
             onEscKeyDown={this.addDialogToggle}
             onOverlayClick={this.addDialogToggle}
             title='Add a new keg'>
-            <AddKegForm 
-              closeDialog={this.addDialogToggle}
-              onNewKegSubmission={this.props.onNewKegSubmission}/>
+            <KegForm
+              keg={{name: 'new'}}
+              toggleParentDialog={this.addDialogToggle}
+              onFormSubmission={this.props.onNewKegSubmission}/>
           </Dialog>
         </div>
       </div>

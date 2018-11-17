@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { v4 } from 'uuid';
 import TopBar from './TopBar';
 import Banner from './Banner';
@@ -218,10 +218,6 @@ class App extends React.Component {
                   kegs={this.state.kegs}
                   onActiveKegChange={this.setActiveKeg}
                   onNewKegSubmission={this.handleAddingNewKeg} />} />
-              <Route path='/form/add' render={() =>
-                <KegForm
-                  keg={{name: 'new'}}
-                  onFormSubmission={this.handleAddingNewKeg} />} />
             </Switch>
             {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
           </div>
@@ -229,7 +225,6 @@ class App extends React.Component {
             {renderKegDetailAfterSelection}
           </div>
         </div>
-        <div><Link to='/form/add'>form practice</Link></div>
       </div>
     );
   }
