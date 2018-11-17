@@ -60,7 +60,7 @@ export default function KegDetail(props) {
         </div>
         <div className='detail-column'>
           <DetailRightColumn
-            keg={props.keg} />
+            imagePath={require(`${props.keg.img}`)}/>
         </div>
       </div>
       <div className='footer'>

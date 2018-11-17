@@ -14,17 +14,18 @@ export default function DetailRightColumn(props) {
             align-items: flex-start;
           }
           .container img {
+            background-color: white;
             width: 200px;
             height: 200px;
             border: 2px solid grey;
           }
         `}
       </style>
-      <img src={props.keg.img} />
+      <img src={props.imagePath} />
     </div>
   );
 }
 
 DetailRightColumn.propTypes = {
-  keg: PropTypes.object
+  imagePath: PropTypes.string
 };

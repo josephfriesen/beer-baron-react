@@ -65,4 +65,4 @@ KegForm.propTypes = {
   onFormSubmission: PropTypes.func.isRequired,
   toggleParentDialog: PropTypes.func,
   keg: PropTypes.object.isRequired
-}
+};
