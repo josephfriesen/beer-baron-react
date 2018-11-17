@@ -10,7 +10,7 @@ export default class EditButtons extends React.Component {
     this.state = {
       deleteDialogOn: false,
       editDialogOn: false
-    }
+    };
     this.deleteDialogToggle = this.deleteDialogToggle.bind(this);
     this.onDeleteConfirm = this.onDeleteConfirm.bind(this);
     this.deleteDialogActions = [
@@ -19,31 +19,31 @@ export default class EditButtons extends React.Component {
     ];
     this.editDialogToggle = this.editDialogToggle.bind(this);
   }
-  
+
   deleteDialogToggle() {
     this.setState({deleteDialogOn: !this.state.deleteDialogOn});
   }
-  
+
   onDeleteConfirm() {
     this.deleteDialogToggle();
     this.props.removeKeg();
   }
-  
+
   editDialogToggle() {
-    this.setState({editDialogOn: !this.state.editDialogOn})
+    this.setState({editDialogOn: !this.state.editDialogOn});
   }
-  
+
   render() {
     return (
       <div className='container'>
-      <style jsx>{`
-        .container {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-        }
-      `}
-      </style>
+        <style jsx>{`
+          .container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+          }
+        `}
+        </style>
         <Button label='Sell a pint' raised onClick={this.props.sellAPint} />
         <Button label='Restock keg' raised onClick={this.props.restock} />
         <Button label='Edit this keg' raised onClick={this.editDialogToggle} />

@@ -4,7 +4,7 @@ import { Button } from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
 
 export default function EditKegForm(props) {
-  
+
   let kegObject = {
     name: props.keg.name,
     price: props.keg.price,
@@ -14,18 +14,18 @@ export default function EditKegForm(props) {
     pintsLeft: props.keg.pintsLeft,
     img: props.keg.img,
   };
-  
+
   function handleKegSubmission(keg) {
     props.onKegEditSubmission(keg);
     props.editDialogToggle();
   }
-  
+
   function inputSubmission(attribute, value) {
     kegObject = Object.assign(kegObject, {
       [attribute]: value
     });
   }
-  
+
   return (
     <div>
       <Input type='text' hint={kegObject.name} id='name' onChange={(value) => {inputSubmission('name', value);}}/>
@@ -42,7 +42,7 @@ export default function EditKegForm(props) {
 }
 
 EditKegForm.propTypes = {
-  onNewKegSubmission: PropTypes.func,
-  closeDialog: PropTypes.func,
+  onKegEditSubmission: PropTypes.func,
+  editDialogToggle: PropTypes.func,
   keg: PropTypes.object
 };

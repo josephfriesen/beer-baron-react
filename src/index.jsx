@@ -23,4 +23,4 @@ if (module.hot) {
     render(App);
   });
 }
-/* eslint-endable */
+/* eslint-enable */

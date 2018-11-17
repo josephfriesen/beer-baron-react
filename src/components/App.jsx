@@ -1,11 +1,12 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { v4 } from 'uuid';
 import TopBar from './TopBar';
 import Banner from './Banner';
 import EmployeeView from './EmployeeView';
 import PatronView from './PatronView';
 import KegDetail from './KegDetail';
+import KegForm from './KegForm';
 
 class App extends React.Component {
 
@@ -99,19 +100,19 @@ class App extends React.Component {
     this.handleEditingAKeg = this.handleEditingAKeg.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // TODO: Move the Redirect component into state, and have it render if and only if this.state.employeeView has been updated, otherwise have this.state.redirect = ''.
-    // BAD! Infinite loop!
-    // if (prevState.employeeView != this.state.employeeView) {
-    //   if (this.state.employeeView) {
-    //     this.setState({redirect: `<Redirect to='/employee' />`});
-    //   } else {
-    //     this.setState({redirect: `<Redirect to='/' />`});
-    //   }
-    // } else {
-    //   this.setState({redirect: ''});
-    // }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   TODO: Move the Redirect component into state, and have it render if and only if this.state.employeeView has been updated, otherwise have this.state.redirect = ''.
+  //   BAD! Infinite loop!
+  //   if (prevState.employeeView != this.state.employeeView) {
+  //     if (this.state.employeeView) {
+  //       this.setState({redirect: `<Redirect to='/employee' />`});
+  //     } else {
+  //       this.setState({redirect: `<Redirect to='/' />`});
+  //     }
+  //   } else {
+  //     this.setState({redirect: ''});
+  //   }
+  // }
 
   handleViewChange() {
     const newView = !this.state.employeeView;
@@ -121,7 +122,7 @@ class App extends React.Component {
   setActiveKeg(kegId) {
     this.setState({activeKeg: kegId});
   }
-  
+
   handleAddingNewKeg(newKeg) {
     const kegId = v4();
     const newKegs = Object.assign({}, this.state.kegs, {
@@ -129,7 +130,7 @@ class App extends React.Component {
     });
     this.setState({kegs: newKegs});
   }
-  
+
   handleSellingAPint() {
     const kegId = this.state.activeKeg; // copy active keg id
     let stateDupe = Object.assign({}, this.state); // copy state
@@ -138,7 +139,7 @@ class App extends React.Component {
     stateDupe.kegs[kegId].pintsLeft -= 1; // Edit property
     this.setState(stateDupe); // set state
   }
-  
+
   handleKegRestock() {
     const kegId = this.state.activeKeg;
     let stateDupe = Object.assign({}, this.state);
@@ -147,9 +148,9 @@ class App extends React.Component {
     stateDupe.kegs[kegId].pintsLeft = 124;
     this.setState(stateDupe);
   }
-  
+
   handleDeletingAKeg() {
-    const kegId = this.state.activeKeg; 
+    const kegId = this.state.activeKeg;
     let stateDupe = Object.assign({}, this.state, {
       activeKeg: null
     });
@@ -157,16 +158,15 @@ class App extends React.Component {
     delete stateDupe.kegs[kegId];
     this.setState(stateDupe);
   }
-  
+
   handleEditingAKeg(editedKeg) {
     const kegId = this.state.activeKeg;
     let stateDupe = Object.assign({}, this.state);
     stateDupe.kegs = Object.assign({}, this.state.kegs);
     stateDupe.kegs[kegId] = editedKeg;
-    console.log(stateDupe);
     this.setState(stateDupe);
   }
-  
+
   render() {
     let renderKegDetailAfterSelection;
     if (this.state.activeKeg) {
@@ -213,11 +213,15 @@ class App extends React.Component {
                 <PatronView
                   kegs={this.state.kegs}
                   onActiveKegChange={this.setActiveKeg} />} />
-              <Route path='/employee' render={(props) =>
+              <Route path='/employee' render={() =>
                 <EmployeeView
                   kegs={this.state.kegs}
                   onActiveKegChange={this.setActiveKeg}
                   onNewKegSubmission={this.handleAddingNewKeg} />} />
+              <Route path='/form/add' render={() =>
+                <KegForm
+                  keg={{name: 'new'}}
+                  onFormSubmission={this.handleAddingNewKeg} />} />
             </Switch>
             {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
           </div>
@@ -225,6 +229,7 @@ class App extends React.Component {
             {renderKegDetailAfterSelection}
           </div>
         </div>
+        <div><Link to='/form/add'>form practice</Link></div>
       </div>
     );
   }
