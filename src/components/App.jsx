@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import { v4 } from 'uuid';
 import TopBar from './TopBar';
 import Banner from './Banner';
@@ -14,7 +15,7 @@ class App extends React.Component {
     this.state = {
       employeeView: false,
       activeKeg: null,
-      // redirect: '',
+      redirect: '',
       kegs: {
         '4487692e-4934-4dc2-9627-fff21217060a': {
           'name': 'Pabst Blue Ribbon',
@@ -99,22 +100,28 @@ class App extends React.Component {
     this.handleEditingAKeg = this.handleEditingAKeg.bind(this);
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   TODO: Move the Redirect component into state, and have it render if and only if this.state.employeeView has been updated, otherwise have this.state.redirect = ''.
-  //   BAD! Infinite loop!
-  //   if (prevState.employeeView != this.state.employeeView) {
-  //     if (this.state.employeeView) {
-  //       this.setState({redirect: `<Redirect to='/employee' />`});
-  //     } else {
-  //       this.setState({redirect: `<Redirect to='/' />`});
-  //     }
-  //   } else {
-  //     this.setState({redirect: ''});
-  //   }
-  // }
+  componentDidMount() {
+    if (this.props.location.pathname == '/employee') {
+      this.setState({employeeView: true});
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const oldView = prevState.employeeView;
+    const newView = this.state.employeeView;
+    if (oldView != newView) {
+      if (newView) {
+        this.props.history.push('/employee');
+      }
+      else {
+        this.props.history.push('/');
+      }
+    }
+  }
 
   handleViewChange() {
     const newView = !this.state.employeeView;
+    console.log('SWITCH ', newView, this.state.employeeView);
     this.setState({employeeView: newView});
   }
 
@@ -199,6 +206,7 @@ class App extends React.Component {
           `}</style>
         <div>
           <TopBar
+            currentPath={this.props.location.pathname}
             onViewChange={this.handleViewChange}
             employeeView={this.state.employeeView} />
         </div>
@@ -218,7 +226,6 @@ class App extends React.Component {
                   onActiveKegChange={this.setActiveKeg}
                   onNewKegSubmission={this.handleAddingNewKeg} />} />
             </Switch>
-            {this.state.employeeView ? <Redirect to='/employee' /> : <Redirect to='/' />}
           </div>
           <div className='flexbox-panel'>
             {renderKegDetailAfterSelection}
@@ -229,4 +236,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+App.PropTypes = {
+  history: PropTypes.object // still says I'm missing this proptype? huh?!
+};
+
+export default withRouter(App);

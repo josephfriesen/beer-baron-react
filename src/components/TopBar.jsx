@@ -28,6 +28,7 @@ function TopBar(props) {
 
       <div style={headerItem}>
         <ViewToggle
+          currentPath={props.currentPath}
           onViewChange={props.onViewChange}
           employeeView={props.employeeView} />
       </div>
@@ -36,6 +37,7 @@ function TopBar(props) {
 }
 
 TopBar.propTypes = {
+  currentPath: PropTypes.string,
   onViewChange: PropTypes.func,
   employeeView: PropTypes.bool
 };
